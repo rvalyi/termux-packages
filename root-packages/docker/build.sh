@@ -113,9 +113,9 @@ termux_step_make() {
 	export VERSION=v${TERMUX_PKG_VERSION}-ce
 	export DISABLE_WARN_OUTSIDE_CONTAINER=1
 	export LDFLAGS="-L ${TERMUX_PREFIX}/lib -r ${TERMUX_PREFIX}/lib"
-	make -j ${TERMUX_MAKE_PROCESSES} dynbinary
+	make -j 1 dynbinary
 	unset GOOS GOARCH CGO_LDFLAGS CC CXX CFLAGS CXXFLAGS LDFLAGS
-	make -j ${TERMUX_MAKE_PROCESSES} manpages
+	make -j 1 manpages
 	)
 	echo " Done!"
 }
