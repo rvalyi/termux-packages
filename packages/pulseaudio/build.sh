@@ -5,18 +5,20 @@ TERMUX_PKG_MAINTAINER="@termux"
 TERMUX_PKG_SRCURL=git+https://github.com/pulseaudio/pulseaudio
 TERMUX_PKG_VERSION="17.0"
 TERMUX_PKG_REVISION=1
-TERMUX_PKG_DEPENDS="dbus, libandroid-execinfo, libandroid-glob, libc++, libltdl, libsndfile, libsoxr, libwebrtc-audio-processing, speexdsp"
+TERMUX_PKG_DEPENDS="dbus, libandroid-execinfo, libandroid-glob, libc++, libltdl, libsndfile, libsoxr, libwebrtc-audio-processing, speexdsp, jack2"
 TERMUX_PKG_BREAKS="libpulseaudio-dev, libpulseaudio"
 TERMUX_PKG_REPLACES="libpulseaudio-dev, libpulseaudio"
 # glib is only a runtime dependency of pulseaudio-glib subpackage
-TERMUX_PKG_BUILD_DEPENDS="libtool, glib, check"
+TERMUX_PKG_BUILD_DEPENDS="libtool, glib, check, jack2"
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="-D alsa=disabled
 -D x11=disabled
 -D gtk=disabled
 -D openssl=disabled
 -D gsettings=disabled
 -D doxygen=false
--D database=simple"
+-D database=simple
+-D jack=enabled"
+
 TERMUX_PKG_CONFFILES="etc/pulse/client.conf etc/pulse/daemon.conf etc/pulse/default.pa etc/pulse/system.pa"
 
 termux_step_pre_configure() {
