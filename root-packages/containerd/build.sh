@@ -26,14 +26,14 @@ termux_step_make() {
 	# issue the build command
 	export BUILDTAGS=no_btrfs
 	make -j 1
-	(unset GOOS GOARCH CGO_LDFLAGS CC CXX CFLAGS CXXFLAGS LDFLAGS
-	make -j 1 man)
+	(unset GOOS GOARCH CGO_LDFLAGS CC CXX CFLAGS CXXFLAGS LDFLAGS)
+	# make -j 1 man)
 
 }
 
 termux_step_make_install() {
 	cd "${GOPATH}/src/github.com/containerd/containerd"
 	DESTDIR= make install
-	DESTDIR= make install-man
+	# DESTDIR= make install-man
 	install -Dm 600 ${TERMUX_PKG_BUILDER_DIR}/config.toml ${TERMUX_PREFIX}/etc/containerd/config.toml
 }
