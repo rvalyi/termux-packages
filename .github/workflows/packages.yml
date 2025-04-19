@@ -274,6 +274,11 @@ jobs:
           fi
         done
 
+        echo "--- Debug: Listing contents of ./debs before tar ---" # ADDED
+        ls -l debs/                                                # ADDED
+        echo "--- Debug: Listing contents of ./output ---"          # ADDED
+        ls -l output/                                              # ADDED
+
         # Files containing certain symbols (e.g. ":") will cause failure in actions/upload-artifact.
         # Archiving *.deb files in a tarball to avoid issues with uploading.
         tar cf artifacts/debs-${{ matrix.target_arch }}-${{ github.sha }}.tar debs
@@ -292,7 +297,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: debs-${{ matrix.target_arch }}-${{ github.sha }}
-        path: ./artifacts
+        path: ./artifacts/debs-${{ matrix.target_arch }}-${{ github.sha }}.tar
 
   test-buildorder-random:
     permissions:
